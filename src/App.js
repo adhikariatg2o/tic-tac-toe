@@ -21,7 +21,7 @@ function App() {
           <div className="cell"></div>
       </div>
         <div className="actions">
-            <button></button>
+            <button className="rewind">REWIND</button>
             <button></button>
         </div>
     </div>
