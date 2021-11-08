@@ -38,4 +38,10 @@ describe('Testing App Component Initiall State', () => {
     expect(resetButton.length).toBe(1);
     expect(resetButton.text().toLowerCase()).toBe('reset');
   });
+
+  it('should show which player\'s turn it is', () => {
+    const playerTurn = wrapper.find('.players .turn');
+    expect(playerTurn.length).toBe(1);
+    expect(playerTurn.text().toLowerCase()).toContain('it\'s your turn');
+  });
 });
