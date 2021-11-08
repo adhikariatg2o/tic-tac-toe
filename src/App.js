@@ -11,18 +11,26 @@ function App() {
     const DEFAULT_ACTIVE_PLAYER = FIRST_PLAYER_NAME;
     const NUMBER_OF_CELLS = 9;
     const BLANK_SPACE = " ";
+
     let PLAYER_NAMES = [];
     PLAYER_NAMES[FIRST_PLAYER_SIGH] = FIRST_PLAYER_NAME;
     PLAYER_NAMES[SECOND_PLAYER_SIGN] = SECOND_PLAYER_NAME;
 
-    let [markedCells, setMarkedCells] = useState([]);
+    let [firstPlayerMarkedCells, setFirstPlayerMarkedCells] = useState([]);
+    let [secondPlayerMarkedCells, setSecondPlayerMarkedCells] = useState([]);
     let [firstPlayersTurn, setFirstPlayrsTurn] = useState(true);
     let [activePlayer, setActivePlayer] = useState(DEFAULT_ACTIVE_PLAYER);
 
     const handleClick = (event) => {
         const cell = event.target;
-        markedCells.push(parseInt(cell.dataset.cellIndex));
-        setMarkedCells([...markedCells]);
+        const cellIndex = parseInt(cell.dataset.cellIndex);
+        if(firstPlayersTurn) {
+            firstPlayerMarkedCells.push(cellIndex);
+            setFirstPlayerMarkedCells([...firstPlayerMarkedCells]);
+        } else {
+            secondPlayerMarkedCells.push(cellIndex);
+            setSecondPlayerMarkedCells([...secondPlayerMarkedCells])
+        }
         switchTurn();
     };
 
@@ -38,7 +46,8 @@ function App() {
         let CELLS = [];
         for(let index = 0; index < NUMBER_OF_CELLS; index++) {
             let classNames = "cell";
-            if (markedCells.includes(index)) classNames += BLANK_SPACE + FIRST_PLAYER_SIGH;
+            if (firstPlayerMarkedCells.includes(index)) classNames += BLANK_SPACE + FIRST_PLAYER_SIGH;
+            if (secondPlayerMarkedCells.includes(index)) classNames += BLANK_SPACE + SECOND_PLAYER_SIGN;
             CELLS.push( <div className={classNames} onClick={handleClick} key={index} data-cell-index={index}></div>)
         }
 
