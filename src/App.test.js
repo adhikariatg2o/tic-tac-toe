@@ -22,4 +22,8 @@ describe('Testing App Component Initiall State', () => {
   it('should have two players', () => {
     expect(wrapper.find('.players .player').length).toBe(2);
   });
+
+  it('should have two action buttons', () => {
+    expect(wrapper.find('.actions button').length).toBe(2);
+  });
 });
