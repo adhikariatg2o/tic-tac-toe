@@ -18,4 +18,8 @@ describe('Testing App Component Initiall State', () => {
   it('should contain nine cells on the game borad', () => {
     expect(wrapper.find('.game-board .cell').length).toBe(9);
   });
+
+  it('should have two players', () => {
+    expect(wrapper.find('.players .player').length).toBe(2);
+  });
 });
