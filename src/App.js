@@ -6,9 +6,9 @@ function App() {
     <div className="App">
       <h1 className="title">TIC TAC TOE</h1>
         <div className="players">
-            <div className="player"></div>
-            <div className="player"></div>
-            <div className="turn">It's your turn</div>
+            <div className="player">Player 1</div>
+            <div className="player">Player 2</div>
+            <div className="turn">It's your turn : Player 1</div>
         </div>
       <div className="game-board">
           <div className="cell"></div>
