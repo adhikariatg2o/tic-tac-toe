@@ -20,6 +20,10 @@ function App() {
           <div className="cell"></div>
           <div className="cell"></div>
       </div>
+        <div className="actions">
+            <button></button>
+            <button></button>
+        </div>
     </div>
   );
 }
