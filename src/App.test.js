@@ -54,7 +54,11 @@ describe('Testing Game\'s Initiall State', () => {
 });
 
 describe('Testing Game\'s Different Moves and Combination of Moves', () => {
-  let wrapper = shallow(<App />);
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
+
   it('should mark the cell by one of the sign when click on the cell', () => {
     wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
     expect(wrapper.find('.game-board .cross').length).toBe(1);
@@ -66,5 +70,17 @@ describe('Testing Game\'s Different Moves and Combination of Moves', () => {
     expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 2');
     wrapper.find('.game-board .cell').at(3).simulate('click', { target: { dataset: { cellIndex: 3}}});
     expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 1');
+  });
+  
+  it('should have different sign for different player', () => {
+    expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 1');
+    wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
+    expect(wrapper.find('.game-board .cross').length).toBe(1);
+    expect(wrapper.find('.game-board .circle').length).toBe(0);
+
+    expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 2');
+    wrapper.find('.game-board .cell').at(2).simulate('click', { target: { dataset: { cellIndex: 2}}});
+    expect(wrapper.find('.game-board .cross').length).toBe(1);
+    expect(wrapper.find('.game-board .circle').length).toBe(1);
   });
 });
