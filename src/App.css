@@ -112,3 +112,21 @@ button.rewind {
 button.reset {
   margin-left: 50px;
 }
+
+.cell.circle::before, .cell.circle::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cell.circle::before {
+  width: calc( var(--mark-size) * 0.9);
+  height: calc( var(--mark-size) * 0.9);
+  background-color: white;
+}
+
+.cell.circle::after {
+  width: calc(var(--mark-size) * 0.7);
+  height: calc(var(--mark-size) * 0.7);
+  background-color: #609EA1;
+}
