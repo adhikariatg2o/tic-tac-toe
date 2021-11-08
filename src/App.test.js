@@ -44,4 +44,8 @@ describe('Testing App Component Initiall State', () => {
     expect(playerTurn.length).toBe(1);
     expect(playerTurn.text().toLowerCase()).toContain('it\'s your turn');
   });
+
+  it('should show first player\'s turn initially(by default', () => {
+    expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 1');
+  });
 });
