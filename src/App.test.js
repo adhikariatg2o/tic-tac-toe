@@ -14,4 +14,8 @@ describe('Testing App Component Initiall State', () => {
   it('should have game board rendered', () => {
     expect(wrapper.find('.App .game-board').length).toBe(1);
   });
+
+  it('should contain nine cells on the game borad', () => {
+    expect(wrapper.find('.game-board .cell').length).toBe(9);
+  });
 });
