@@ -26,4 +26,10 @@ describe('Testing App Component Initiall State', () => {
   it('should have two action buttons', () => {
     expect(wrapper.find('.actions button').length).toBe(2);
   });
+
+  it('should have rewind button', () => {
+    const rewindButton = wrapper.find('.actions .rewind');
+    expect(rewindButton.length).toBe(1);
+    expect(rewindButton.text().toLowerCase()).toBe('rewind');
+  });
 });
