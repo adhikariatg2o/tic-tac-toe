@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import App from './App';
 
-describe('Testing App Component Initiall State', () => {
+describe('Testing Game\'s Initiall State', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<App/>);
@@ -20,7 +20,10 @@ describe('Testing App Component Initiall State', () => {
   });
 
   it('should have two players', () => {
-    expect(wrapper.find('.players .player').length).toBe(2);
+    const players = wrapper.find('.players .player');
+    expect(players.length).toBe(2);
+    expect(players.first().text().toLowerCase()).toBe('player 1');
+    expect(players.last().text().toLowerCase()).toBe('player 2');
   });
 
   it('should have two action buttons', () => {
