@@ -57,6 +57,6 @@ describe('Testing Game\'s Different Moves and Combination of Moves', () => {
   let wrapper = shallow(<App />);
   it('should mark the cell by one of the sign when click on the cell', () => {
     wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
-    expect(wrapper.find('.board .cross').length).toBe(1);
+    expect(wrapper.find('.game-board .cross').length).toBe(1);
   });
 });

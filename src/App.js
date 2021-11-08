@@ -10,7 +10,7 @@ function App() {
 
     const handleClick = (event) => {
         const cell = event.target;
-        markedCells.push(cell.cellIndex);
+        markedCells.push(parseInt(cell.dataset.cellIndex));
         setMarkedCells([...markedCells]);
     };
 
