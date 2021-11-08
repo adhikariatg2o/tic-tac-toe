@@ -59,4 +59,12 @@ describe('Testing Game\'s Different Moves and Combination of Moves', () => {
     wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
     expect(wrapper.find('.game-board .cross').length).toBe(1);
   });
+
+  it('should switch the turn once sign is marked by the player', () => {
+    expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 1');
+    wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
+    expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 2');
+    wrapper.find('.game-board .cell').at(3).simulate('click', { target: { dataset: { cellIndex: 3}}});
+    expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 1');
+  });
 });
