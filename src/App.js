@@ -3,15 +3,35 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-    const [markedCells, setMarkedCells] = useState([]);
+
     const FIRST_PLAYER_SIGH = "cross";
+    const FIRST_PLAYER_NAME = "Player 1"
+    const SECOND_PLAYER_SIGN = "circle";
+    const SECOND_PLAYER_NAME = "Player 2";
+    const DEFAULT_ACTIVE_PLAYER = FIRST_PLAYER_NAME;
     const NUMBER_OF_CELLS = 9;
     const BLANK_SPACE = " ";
+    let PLAYER_NAMES = [];
+    PLAYER_NAMES[FIRST_PLAYER_SIGH] = FIRST_PLAYER_NAME;
+    PLAYER_NAMES[SECOND_PLAYER_SIGN] = SECOND_PLAYER_NAME;
+
+    let [markedCells, setMarkedCells] = useState([]);
+    let [firstPlayersTurn, setFirstPlayrsTurn] = useState(true);
+    let [activePlayer, setActivePlayer] = useState(DEFAULT_ACTIVE_PLAYER);
 
     const handleClick = (event) => {
         const cell = event.target;
         markedCells.push(parseInt(cell.dataset.cellIndex));
         setMarkedCells([...markedCells]);
+        switchTurn();
+    };
+
+    const switchTurn = () => {
+        firstPlayersTurn = !firstPlayersTurn;
+        setFirstPlayrsTurn(firstPlayersTurn);
+        let activePlayerName = SECOND_PLAYER_NAME;
+        if (firstPlayersTurn) activePlayerName = FIRST_PLAYER_NAME;
+        setActivePlayer(activePlayerName);
     };
 
     const renderGameBoard = () => {
@@ -29,9 +49,9 @@ function App() {
         <div className="App">
             <h1 className="title">TIC TAC TOE</h1>
             <div className="players">
-                <div className="player">Player 1</div>
-                <div className="player">Player 2</div>
-                <div className="turn">It's your turn : Player 1</div>
+                <div className="player">{FIRST_PLAYER_NAME}</div>
+                <div className="player">{SECOND_PLAYER_NAME}</div>
+                <div className="turn">It's your turn : {activePlayer}</div>
             </div>
             <div className="game-board">
                 { renderGameBoard() }
