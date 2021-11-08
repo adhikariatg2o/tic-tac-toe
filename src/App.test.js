@@ -32,4 +32,10 @@ describe('Testing App Component Initiall State', () => {
     expect(rewindButton.length).toBe(1);
     expect(rewindButton.text().toLowerCase()).toBe('rewind');
   });
+
+  it('should have reset button', () => {
+    const resetButton = wrapper.find('.actions .reset');
+    expect(resetButton.length).toBe(1);
+    expect(resetButton.text().toLowerCase()).toBe('reset');
+  });
 });
