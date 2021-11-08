@@ -22,7 +22,7 @@ function App() {
       </div>
         <div className="actions">
             <button className="rewind">REWIND</button>
-            <button></button>
+            <button className="reset">RESET</button>
         </div>
     </div>
   );
