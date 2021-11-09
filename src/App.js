@@ -65,6 +65,12 @@ function App() {
         switchTurn();
     };
 
+    const resetGame = () => {
+        setActivePlayer(DEFAULT_ACTIVE_PLAYER);
+        setFirstPlayerMarkedCells([]);
+        setSecondPlayerMarkedCells([]);
+    };
+
     return (
         <div className="App">
             <h1 className="title">TIC TAC TOE</h1>
@@ -78,7 +84,7 @@ function App() {
             </div>
             <div className="actions">
                 <button className="rewind" onClick={rewindLastMove}>REWIND</button>
-                <button className="reset">RESET</button>
+                <button className="reset" onClick={resetGame}>RESET</button>
             </div>
         </div>
     );
