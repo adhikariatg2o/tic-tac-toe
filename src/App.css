@@ -141,3 +141,7 @@ button.reset {
   font-size: 24px;
   font-weight: bold;
 }
+
+.player-sign {
+  font-size: x-small;
+}

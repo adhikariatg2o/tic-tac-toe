@@ -121,9 +121,15 @@ function App() {
         <div className="App">
             <h1 className="title">TIC TAC TOE</h1>
             <div className="players">
-                <div className="player">{FIRST_PLAYER_NAME}</div>
+                <div className="player">
+                    <span className="name">{FIRST_PLAYER_NAME}</span>
+                    <div className="player-sign cross">Player Sgn : X (Cross)</div>
+                </div>
                 <div className="turn">It's your turn : {activePlayer}</div>
-                <div className="player">{SECOND_PLAYER_NAME}</div>
+                <div className="player">
+                    <span className="name">{SECOND_PLAYER_NAME}</span>
+                    <div className="player-sign circle">Player Sign : O (Circle)</div>
+                </div>
             </div>
             <div className="game-board">
                 { renderGameBoard() }

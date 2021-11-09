@@ -22,8 +22,8 @@ describe('Testing Game\'s Initiall State', () => {
   it('should have two players', () => {
     const players = wrapper.find('.players .player');
     expect(players.length).toBe(2);
-    expect(players.first().text().toLowerCase()).toBe('player 1');
-    expect(players.last().text().toLowerCase()).toBe('player 2');
+    expect(players.at(0).find('.name').text().toLowerCase()).toBe('player 1');
+    expect(players.at(1).find('.name').text().toLowerCase()).toBe('player 2');
   });
 
   it('should have two action buttons', () => {
