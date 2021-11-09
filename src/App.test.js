@@ -136,6 +136,16 @@ describe('Testing Game\'s Different Moves and Combination of Moves', () => {
     expect(wrapper.find('.game-board .cross').length).toBe(3);
     expect(wrapper.find('.game-board .circle').length).toBe(2);
   });
+
+  it('should not allow to mark the same cell again with different sign', () => {
+    wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
+    expect(wrapper.find('.game-board .cell').at(0).hasClass('cross')).toBe(true);
+    expect(wrapper.find('.game-board .cell').at(0).hasClass('circle')).toBe(false);
+
+    wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
+    expect(wrapper.find('.game-board .cell').at(0).hasClass('cross')).toBe(true);
+    expect(wrapper.find('.game-board .cell').at(0).hasClass('circle')).toBe(false);
+  });
 });
 
 describe('Testing rewind button\'s behaviour', () => {
