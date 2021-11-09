@@ -83,6 +83,19 @@ describe('Testing Game\'s Different Moves and Combination of Moves', () => {
     expect(wrapper.find('.game-board .cross').length).toBe(1);
     expect(wrapper.find('.game-board .circle').length).toBe(1);
   });
+
+  it('should determine and show winner when win combination is match to the marked cell combination of the player', () => {
+    expect(wrapper.find('.winner').length).toBe(0);
+    wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
+    wrapper.find('.game-board .cell').at(3).simulate('click', { target: { dataset: { cellIndex: 3}}});
+    wrapper.find('.game-board .cell').at(4).simulate('click', { target: { dataset: { cellIndex: 4}}});
+    expect(wrapper.find('.winner').length).toBe(0);
+    wrapper.find('.game-board .cell').at(7).simulate('click', { target: { dataset: { cellIndex: 7}}});
+    wrapper.find('.game-board .cell').at(8).simulate('click', { target: { dataset: { cellIndex: 8}}});
+    
+    expect(wrapper.find('.winner').length).toBe(1);
+    expect(wrapper.find('.winner').text().toLowerCase()).toContain('player 1 won');
+  });
 });
 
 describe('Testing rewind button\'s behaviour', () => {
