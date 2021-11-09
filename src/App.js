@@ -33,8 +33,9 @@ function App() {
     let [isGameComplete, setGameAsComplete] = useState(false);
 
     const handleClick = (event) => {
-        if (isGameComplete) return;
         const cell = event.target;
+        if (isGameComplete || cellIsMarked(cell)) return;
+
         const cellIndex = parseInt(cell.dataset.cellIndex);
         let currentPlayerSign;
         if(firstPlayersTurn) {
@@ -55,6 +56,8 @@ function App() {
         }
         switchTurn();
     };
+
+    const cellIsMarked = (cell) => firstPlayerMarkedCells.includes(cell.dataset.cellIndex) || secondPlayerMarkedCells.includes(cell.dataset.cellIndex);
 
     const checkWinner = (currentPlayerSign) => {
         let currentUsersMarkedCells;
