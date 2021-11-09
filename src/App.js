@@ -34,30 +34,32 @@ function App() {
 
     const handleClick = (event) => {
         const cell = event.target;
-        if (isGameComplete || cellIsMarked(cell)) return;
+        if (!isGameComplete && !cellIsMarked(cell)) {
+            const cellIndex = parseInt(cell.dataset.cellIndex);
+            let currentPlayerSign = firstPlayersTurn ? FIRST_PLAYER_SIGH : SECOND_PLAYER_SIGN;
+            markCellWithSign(cellIndex);
+            if (checkWinner(currentPlayerSign)) {
+                setGameResult(PLAYER_NAMES[currentPlayerSign].toUpperCase() + " WON !!");
+                setGameAsComplete(true);
+            } else if (checkDraw()) {
+                setGameResult("Game Draw");
+                setGameAsComplete(true);
+            }
+            switchTurn();
+        }
+    };
 
-        const cellIndex = parseInt(cell.dataset.cellIndex);
-        let currentPlayerSign;
+    const markCellWithSign = (cellIndex) => {
         if(firstPlayersTurn) {
             firstPlayerMarkedCells.push(cellIndex);
             setFirstPlayerMarkedCells([...firstPlayerMarkedCells]);
-            currentPlayerSign = FIRST_PLAYER_SIGH;
         } else {
             secondPlayerMarkedCells.push(cellIndex);
             setSecondPlayerMarkedCells([...secondPlayerMarkedCells])
-            currentPlayerSign = SECOND_PLAYER_SIGN;
         }
-        if (checkWinner(currentPlayerSign)) {
-            setGameResult(PLAYER_NAMES[currentPlayerSign].toUpperCase() + " WON !!");
-            setGameAsComplete(true);
-        } else if (checkDraw()) {
-            setGameResult("Game Draw");
-            setGameAsComplete(true);
-        }
-        switchTurn();
     };
 
-    const cellIsMarked = (cell) => firstPlayerMarkedCells.includes(cell.dataset.cellIndex) || secondPlayerMarkedCells.includes(cell.dataset.cellIndex);
+    const cellIsMarked = (cell) => firstPlayerMarkedCells.includes(parseInt(cell.dataset.cellIndex)) || secondPlayerMarkedCells.includes(parseInt(cell.dataset.cellIndex));
 
     const checkWinner = (currentPlayerSign) => {
         let currentUsersMarkedCells;
