@@ -98,6 +98,8 @@ function App() {
             firstPlayerMarkedCells.pop();
             setFirstPlayerMarkedCells([...firstPlayerMarkedCells]);
         }
+        setGameResult(undefined);
+        setGameAsComplete(false);
         switchTurn();
     };
 
