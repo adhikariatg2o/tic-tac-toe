@@ -158,6 +158,22 @@ describe('Testing rewind button\'s behaviour', () => {
     expect(wrapper.find(".game-board .cross").length).toBe(0);
     expect(wrapper.find(".game-board .circle").length).toBe(0);
   });
+
+  it('should reset the game result when executing rewind action after game is complete', () => {
+    expect(wrapper.find('.game-result').length).toBe(0);
+    wrapper.find('.game-board .cell').at(0).simulate('click', { target: { dataset: { cellIndex: 0}}});
+    wrapper.find('.game-board .cell').at(3).simulate('click', { target: { dataset: { cellIndex: 3}}});
+    wrapper.find('.game-board .cell').at(4).simulate('click', { target: { dataset: { cellIndex: 4}}});
+    expect(wrapper.find('.game-result').length).toBe(0);
+    wrapper.find('.game-board .cell').at(7).simulate('click', { target: { dataset: { cellIndex: 7}}});
+    wrapper.find('.game-board .cell').at(8).simulate('click', { target: { dataset: { cellIndex: 8}}});
+
+    expect(wrapper.find('.game-result').length).toBe(1);
+    expect(wrapper.find('.game-result').text().toLowerCase()).toContain('player 1 won');
+
+    wrapper.find('.rewind').simulate('click');
+    expect(wrapper.find('.game-result').length).toBe(0);
+  });
 });
 
 describe('Testing reset behaviour', () => {
