@@ -127,3 +127,31 @@ describe('Testing rewind button\'s behaviour', () => {
     expect(wrapper.find(".game-board .circle").length).toBe(0);
   });
 });
+
+describe('Testing reset behaviour', () => {
+
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
+
+  it('should reset all the moves and set it to initial state', () => {
+    wrapper.find('.game-board .cell').at(0).simulate('click', {target: { dataset : {cellIndex: 0}}});
+    expect(wrapper.find(".game-board .cross").length).toBe(1);
+    expect(wrapper.find(".game-board .circle").length).toBe(0);
+
+    wrapper.find('.reset').simulate('click');
+    expect(wrapper.find(".game-board .cross").length).toBe(0);
+    expect(wrapper.find(".game-board .circle").length).toBe(0);
+
+    wrapper.find('.game-board .cell').at(0).simulate('click', {target: { dataset : {cellIndex: 0}}});
+    wrapper.find('.game-board .cell').at(1).simulate('click', {target: { dataset : {cellIndex: 1}}});
+    expect(wrapper.find(".game-board .cross").length).toBe(1);
+    expect(wrapper.find(".game-board .circle").length).toBe(1);
+
+    wrapper.find('.reset').simulate('click');
+    expect(wrapper.find(".game-board .cross").length).toBe(0);
+    expect(wrapper.find(".game-board .circle").length).toBe(0);
+  })
+
+});
