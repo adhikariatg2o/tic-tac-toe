@@ -6,6 +6,11 @@ This is a web application for the game of tic tac toe. This web app is developed
 
 You should have node and npm installed on you machine. Then go to the project directory and you can run:
 
+### `npm install`
+
+First install all the application dependencies using this command.
+
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -13,4 +18,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser an
 
 Game board will look like this
 
-![](public/tic-tac-toe-board-1.png)
+![](public/tic-tac-toe-board.png)

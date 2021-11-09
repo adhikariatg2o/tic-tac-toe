@@ -1,0 +1,32 @@
+const FIRST_PLAYER_SIGH = "cross";
+const FIRST_PLAYER_NAME = "Player 1"
+const SECOND_PLAYER_SIGN = "circle";
+const SECOND_PLAYER_NAME = "Player 2";
+const DEFAULT_ACTIVE_PLAYER = FIRST_PLAYER_NAME;
+const NUMBER_OF_CELLS = 9;
+const BLANK_SPACE = " ";
+const WIN_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+let PLAYER_NAMES = [];
+PLAYER_NAMES[FIRST_PLAYER_SIGH] = FIRST_PLAYER_NAME;
+PLAYER_NAMES[SECOND_PLAYER_SIGN] = SECOND_PLAYER_NAME;
+
+export {
+    FIRST_PLAYER_SIGH,
+    FIRST_PLAYER_NAME,
+    SECOND_PLAYER_NAME,
+    SECOND_PLAYER_SIGN,
+    DEFAULT_ACTIVE_PLAYER,
+    NUMBER_OF_CELLS,
+    BLANK_SPACE,
+    WIN_COMBINATIONS,
+    PLAYER_NAMES,
+}
