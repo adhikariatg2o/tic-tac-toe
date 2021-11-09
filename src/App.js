@@ -54,6 +54,16 @@ function App() {
         return CELLS;
     };
 
+    const rewindLastMove = () => {
+        if (firstPlayersTurn && secondPlayerMarkedCells.length > 0) {
+            secondPlayerMarkedCells.pop();
+            setSecondPlayerMarkedCells([...secondPlayerMarkedCells]);
+        } else if (firstPlayerMarkedCells.length > 0) {
+            firstPlayerMarkedCells.pop();
+            setFirstPlayerMarkedCells([...firstPlayerMarkedCells]);
+        }
+    };
+
     return (
         <div className="App">
             <h1 className="title">TIC TAC TOE</h1>
@@ -66,7 +76,7 @@ function App() {
                 { renderGameBoard() }
             </div>
             <div className="actions">
-                <button className="rewind">REWIND</button>
+                <button className="rewind" onClick={rewindLastMove}>REWIND</button>
                 <button className="reset">RESET</button>
             </div>
         </div>
