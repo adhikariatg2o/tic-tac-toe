@@ -11,7 +11,16 @@ function App() {
     const DEFAULT_ACTIVE_PLAYER = FIRST_PLAYER_NAME;
     const NUMBER_OF_CELLS = 9;
     const BLANK_SPACE = " ";
-
+    const WIN_COMBINATIONS = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
     let PLAYER_NAMES = [];
     PLAYER_NAMES[FIRST_PLAYER_SIGH] = FIRST_PLAYER_NAME;
     PLAYER_NAMES[SECOND_PLAYER_SIGN] = SECOND_PLAYER_NAME;
@@ -20,18 +29,38 @@ function App() {
     let [secondPlayerMarkedCells, setSecondPlayerMarkedCells] = useState([]);
     let [firstPlayersTurn, setFirstPlayrsTurn] = useState(true);
     let [activePlayer, setActivePlayer] = useState(DEFAULT_ACTIVE_PLAYER);
+    let [gameResult, setGameResult] = useState(undefined);
+    let [isGameComplete, setGameAsComplete] = useState(false);
 
     const handleClick = (event) => {
         const cell = event.target;
         const cellIndex = parseInt(cell.dataset.cellIndex);
+        let currentPlayerSign;
         if(firstPlayersTurn) {
             firstPlayerMarkedCells.push(cellIndex);
             setFirstPlayerMarkedCells([...firstPlayerMarkedCells]);
+            currentPlayerSign = FIRST_PLAYER_SIGH;
         } else {
             secondPlayerMarkedCells.push(cellIndex);
             setSecondPlayerMarkedCells([...secondPlayerMarkedCells])
+            currentPlayerSign = SECOND_PLAYER_SIGN;
+        }
+        if (checkWinner(currentPlayerSign)) {
+            setGameResult(PLAYER_NAMES[currentPlayerSign].toUpperCase() + " WON !!");
+            setGameAsComplete(true);
         }
         switchTurn();
+    };
+
+    const checkWinner = (currentPlayerSign) => {
+        let currentUsersMarkedCells;
+        currentPlayerSign === FIRST_PLAYER_SIGH ? currentUsersMarkedCells = [...firstPlayerMarkedCells] :
+            currentUsersMarkedCells = [...secondPlayerMarkedCells];
+        return WIN_COMBINATIONS.some(
+            combination => combination.every(
+                value => currentUsersMarkedCells.includes(value)
+            )
+        );
     };
 
     const switchTurn = () => {
@@ -82,6 +111,7 @@ function App() {
             <div className="game-board">
                 { renderGameBoard() }
             </div>
+            { isGameComplete && <div className="game-result">{gameResult}</div> }
             <div className="actions">
                 <button className="rewind" onClick={rewindLastMove}>REWIND</button>
                 <button className="reset" onClick={resetGame}>RESET</button>
