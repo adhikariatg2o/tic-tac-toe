@@ -48,6 +48,9 @@ function App() {
         if (checkWinner(currentPlayerSign)) {
             setGameResult(PLAYER_NAMES[currentPlayerSign].toUpperCase() + " WON !!");
             setGameAsComplete(true);
+        } else if (checkDraw()) {
+            setGameResult("Game Draw");
+            setGameAsComplete(true);
         }
         switchTurn();
     };
@@ -61,6 +64,10 @@ function App() {
                 value => currentUsersMarkedCells.includes(value)
             )
         );
+    };
+
+    const checkDraw = () => {
+        return firstPlayerMarkedCells.length + secondPlayerMarkedCells.length === 9;
     };
 
     const switchTurn = () => {
