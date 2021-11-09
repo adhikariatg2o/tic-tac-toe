@@ -62,6 +62,7 @@ function App() {
             firstPlayerMarkedCells.pop();
             setFirstPlayerMarkedCells([...firstPlayerMarkedCells]);
         }
+        switchTurn();
     };
 
     return (
