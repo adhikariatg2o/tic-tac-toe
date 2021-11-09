@@ -33,6 +33,7 @@ function App() {
     let [isGameComplete, setGameAsComplete] = useState(false);
 
     const handleClick = (event) => {
+        if (isGameComplete) return;
         const cell = event.target;
         const cellIndex = parseInt(cell.dataset.cellIndex);
         let currentPlayerSign;
