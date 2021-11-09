@@ -120,8 +120,8 @@ function App() {
             <h1 className="title">TIC TAC TOE</h1>
             <div className="players">
                 <div className="player">{FIRST_PLAYER_NAME}</div>
-                <div className="player">{SECOND_PLAYER_NAME}</div>
                 <div className="turn">It's your turn : {activePlayer}</div>
+                <div className="player">{SECOND_PLAYER_NAME}</div>
             </div>
             <div className="game-board">
                 { renderGameBoard() }

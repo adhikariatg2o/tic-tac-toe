@@ -130,3 +130,14 @@ button.reset {
   height: calc(var(--mark-size) * 0.7);
   background-color: #609EA1;
 }
+
+.game-result {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
