@@ -107,6 +107,8 @@ function App() {
         setActivePlayer(DEFAULT_ACTIVE_PLAYER);
         setFirstPlayerMarkedCells([]);
         setSecondPlayerMarkedCells([]);
+        setGameResult(undefined);
+        setGameAsComplete(false);
     };
 
     return (
