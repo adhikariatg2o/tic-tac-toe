@@ -84,3 +84,22 @@ describe('Testing Game\'s Different Moves and Combination of Moves', () => {
     expect(wrapper.find('.game-board .circle').length).toBe(1);
   });
 });
+
+describe('Testing rewind button\'s behaviour', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
+
+  it('should undo last move', () => {
+    expect(wrapper.find('.game-board .cross').length).toBe(0);
+    expect(wrapper.find('.game-board .circle').length).toBe(0);
+    wrapper.find('.game-board .cell').first().simulate('click', {target: { dataset : {cellIndex: 0}}});
+    expect(wrapper.find('.game-board .cross').length).toBe(1);
+    expect(wrapper.find('.game-board .circle').length).toBe(0);
+
+    wrapper.find('.actions .rewind').simulate('click');
+    expect(wrapper.find('.game-board .cross').length).toBe(0);
+    expect(wrapper.find('.game-board .circle').length).toBe(0);
+  });
+});
