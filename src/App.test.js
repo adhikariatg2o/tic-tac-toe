@@ -105,10 +105,25 @@ describe('Testing rewind button\'s behaviour', () => {
 
   it('should assign the turn to the player whose move rewound', () => {
     expect(wrapper.find('.players .turn').text().toLowerCase()).toContain('it\'s your turn : player 1');
-    wrapper.find('.game-board .cell').at(0).simulate('click', {target: { dataset : {cellIndex: 1}}});
+    wrapper.find('.game-board .cell').at(0).simulate('click', {target: { dataset : {cellIndex: 0}}});
     expect(wrapper.find('.players .turn').text().toLowerCase()).toContain("it's your turn : player 2");
 
     wrapper.find('.rewind').simulate('click');
     expect(wrapper.find('.players .turn').text().toLowerCase()).toContain("it's your turn : player 1");
+  });
+
+  it('should rewind the last move of the other player on consecutive rewind action', () => {
+    wrapper.find('.game-board .cell').at(0).simulate('click', {target: { dataset : {cellIndex: 0}}});
+    wrapper.find('.game-board .cell').at(1).simulate('click', {target: { dataset : {cellIndex: 1}}});
+    expect(wrapper.find(".game-board .cross").length).toBe(1);
+    expect(wrapper.find(".game-board .circle").length).toBe(1);
+
+    wrapper.find('.rewind').simulate('click');
+    expect(wrapper.find(".game-board .cross").length).toBe(1);
+    expect(wrapper.find(".game-board .circle").length).toBe(0);
+
+    wrapper.find('.rewind').simulate('click');
+    expect(wrapper.find(".game-board .cross").length).toBe(0);
+    expect(wrapper.find(".game-board .circle").length).toBe(0);
   });
 });
