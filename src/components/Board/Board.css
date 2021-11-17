@@ -1,0 +1,58 @@
+@import "./variable.css";
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-color);
+}
+
+.title {
+    text-align: center;
+    color: white;
+}
+
+.players {
+    color: white;
+    width: 100%;
+    display: flex;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    color: white;
+}
+
+button:hover {
+    background-color: green;
+}
+
+button.rewind {
+    margin-right: 50px;
+}
+
+button.reset {
+    margin-left: 50px;
+}
+
+.game-result {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}

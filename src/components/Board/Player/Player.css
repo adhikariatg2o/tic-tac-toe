@@ -1,0 +1,10 @@
+
+.player {
+    display: table;
+    margin: 0 auto;
+}
+
+.player-sign {
+    font-size: x-small;
+}
+

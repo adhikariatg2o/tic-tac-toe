@@ -1,0 +1,6 @@
+
+:root {
+    --cell-size: 150px;
+    --mark-size: calc(var(--cell-size) * .9);
+    --bg-color: #609EA1;
+}
